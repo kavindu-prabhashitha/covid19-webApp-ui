@@ -74,10 +74,10 @@
         </tr>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" *ngFor="let case of covid_case.cases| keys">
           <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              
+            {{covid_case.country}}
           </th>
           <td class="px-6 py-4">
-              
+            {{covid_case.region}}
           </td>
           <td class="px-6 py-4">
               {{case | date}}
