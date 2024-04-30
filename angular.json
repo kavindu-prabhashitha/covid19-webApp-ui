@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "covid19-webUI:build:production"
+              "buildTarget": "covid19-webUI:build:production"
             },
             "development": {
-              "browserTarget": "covid19-webUI:build:development"
+              "buildTarget": "covid19-webUI:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "covid19-webUI:build"
+            "buildTarget": "covid19-webUI:build"
           }
         },
         "test": {
