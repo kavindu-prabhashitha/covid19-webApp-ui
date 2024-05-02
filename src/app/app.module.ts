@@ -9,13 +9,17 @@ import { FormsModule } from '@angular/forms';
 import { Covid19APIService } from './services/covid19API.service';
 import { KeysPipe } from './pipes/key.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SearchCasesComponent } from './components/search-cases/search-cases.component';
+import { ImportDataComponent } from './components/import-data/import-data.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     KeysPipe,
-    NavbarComponent
+    NavbarComponent,
+    SearchCasesComponent,
+    ImportDataComponent
     
   ],
   imports: [
