@@ -6,6 +6,9 @@ import { ICommonResponse } from "../interfaces/CommonResponse.interface";
 @Injectable()
 export class Covid19APIService{
     apiEndPoint = "https://localhost:44332/api/Covid19Data/country";
+    apiDbImportEndPoint = "https://localhost:44332/api/Covid19Data/save-data";
+    apiDbDataGetEndPoint = "https://localhost:44332/api/Covid19Data/get-db-data";
+    apiDbDataGetByCountryEndPoint = "https://localhost:44332/api/Covid19Data/get-db-data-country";
     constructor(private httpClient:HttpClient){
 
     }
@@ -26,6 +29,30 @@ export class Covid19APIService{
         const params = new HttpParams()
             .set("country", countryName)
             .set("region",region)
+
+        return this.httpClient.get<ICommonResponse<ICovidCountryData[]>>(requestURL,{params})
+    }
+
+    importDataToDatabase(countryName:string){
+        const requestURL = `${this.apiDbImportEndPoint}`
+        const params = new HttpParams()
+            .set("country", countryName)
+
+        return this.httpClient.get<ICommonResponse<ICovidCountryData[]>>(requestURL,{params})
+    }
+
+    importCountryDataFromDB(){
+        const requestURL = `${this.apiDbDataGetEndPoint}`
+        // const params = new HttpParams()
+        //     .set("country", countryName)
+
+        return this.httpClient.get<ICommonResponse<ICovidCountryData[]>>(requestURL)
+    }
+
+    importDbDataByCountryName(countryName:string){
+        const requestURL = `${this.apiDbDataGetByCountryEndPoint}`
+        const params = new HttpParams()
+            .set("country", countryName)
 
         return this.httpClient.get<ICommonResponse<ICovidCountryData[]>>(requestURL,{params})
     }
