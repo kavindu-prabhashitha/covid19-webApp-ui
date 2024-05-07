@@ -79,7 +79,13 @@ export class ImportDataComponent implements AfterContentChecked{
   }
   this.apiService.importDbDataByCountryName(this.countryName).subscribe({
     next:(res)=>{
-      this.countryCaseData = res.data
+      this.countryCaseData = res.data;
+
+      if(res.data.length === 0 ){
+        this.toastr.warning(`Data Not Available by the ${this.countryName}`);
+        this.isLoading = false;
+        return
+      }
       this.toastr.success(res.message);
       console.log("Country Data Import From DB")
       console.log(this.countryCaseData)
