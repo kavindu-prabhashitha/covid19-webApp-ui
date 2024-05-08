@@ -6,13 +6,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Covid19APIService } from './services/covid19API.service';
 import { KeysPipe } from './pipes/key.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SearchCasesComponent } from './components/search-cases/search-cases.component';
 import { ImportDataComponent } from './components/import-data/import-data.component';
 import { ToastrModule } from 'ngx-toastr';
+import { ModalModule } from './shared/modules/modal/modal.module';
+import { AddEditCountryCaseComponent } from './components/add-edit-country-case/add-edit-country-case.component';
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import { ToastrModule } from 'ngx-toastr';
     KeysPipe,
     NavbarComponent,
     SearchCasesComponent,
-    ImportDataComponent
+    ImportDataComponent,
+    AddEditCountryCaseComponent
     
   ],
   imports: [
@@ -30,6 +33,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot({
       timeOut:3000,
       disableTimeOut:true,
@@ -37,7 +41,8 @@ import { ToastrModule } from 'ngx-toastr';
       preventDuplicates: true,
       closeButton:true
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ModalModule
   
    
   ],

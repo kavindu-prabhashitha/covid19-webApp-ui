@@ -1,7 +1,9 @@
-import { AfterContentChecked, Component } from '@angular/core';
+import { AfterContentChecked, Component, ElementRef, TemplateRef, ViewContainerRef } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ICovidCountryData } from 'src/app/interfaces';
 import { Covid19APIService } from 'src/app/services/covid19API.service';
+import { ModalService } from 'src/app/shared/modules/modal/modal.service';
 
 interface ICountryData {
   id:string
@@ -26,12 +28,21 @@ interface CaseData {
 export class ImportDataComponent implements AfterContentChecked{
 
  isLoading=false;
+ addEditModalOpen = false;
  countryName="";
  countryCaseData:ICovidCountryData[] = []
 
- constructor(private toastr:ToastrService, private apiService:Covid19APIService){
+
+
+ constructor(
+  private toastr:ToastrService, 
+  private apiService:Covid19APIService, 
+  private modalService:ModalService
+){
 
  }
+
+
 
  importData(){
   if(this.countryName === ''){
@@ -97,6 +108,23 @@ export class ImportDataComponent implements AfterContentChecked{
     }
   })
  }
+
+ openAddCaseModel(){
+  // this.modalService.open(modalTemplate, {size:'lg', title:'Add Country Case'}).subscribe((action:any)=>{
+  //   console.log('modalAction',action)
+  // })
+  this.addEditModalOpen = !this.addEditModalOpen;
+
+ }
+
+ onCloseModal(event:any){
+  console.log("Close Modal : ",event)
+ }
+
+ editCountryCaseData(){
+  
+ }
+
 
  ngAfterContentChecked(): void {
   console.log(this.countryName);
