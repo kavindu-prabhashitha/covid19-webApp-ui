@@ -15,7 +15,7 @@
 
             <button type="button"
                 class="w-[15%] text-white mt-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                (click)="openAddCaseModel()"> <span class="font-bold text-xl">+</span>
+                (click)="openAddCaseModalComponent()"> <span class="font-bold text-xl">+</span>
                 Add Case</button>
         </div>
 
@@ -111,7 +111,7 @@
                     </td>
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                    *ngFor="let case of covid_case.cases.slice(0,50)| keys">
+                    *ngFor="let case of covid_case.cases.slice(0,50)">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{covid_case.country}}
                     </th>
@@ -119,25 +119,25 @@
                         {{covid_case.region}}
                     </td>
                     <td class="px-6 py-4">
-                        {{case | date}}
+                        {{case.id| date}}
                     </td>
                     <td class="px-6 py-4">
                         <span
                             class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
-                            {{covid_case.cases[case]["new"]}}
+                            {{case.new}}
                         </span>
                     </td>
                     <td class="px-6 py-4">
                         <span
                             class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">
-                            {{covid_case.cases[case]["total"]}}
+                            {{case.total}}
                         </span>
 
                     </td>
                     <td class="px-6 py-4">
                         <button type="button"
                         class="text-white mt-2 bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
-                        (click)="editCountryCaseData()">
+                        (click)="editCountryCaseData(covid_case.id, case.id, covid_case.country, covid_case.region, case)">
                         Edit</button>
                     </td>
                 </tr>
@@ -151,5 +151,3 @@
 
 </div>
 
-<app-add-edit-country-case *ngIf="addEditModalOpen" (closeEvent)="onCloseModal($event)"></app-add-edit-country-case>
-     

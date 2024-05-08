@@ -1,9 +1,11 @@
-import { AfterContentChecked, Component, ElementRef, TemplateRef, ViewContainerRef } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AfterContentChecked, Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { ICovidCountryData } from 'src/app/interfaces';
+import { IGetCountryCaseData, IUpdateCountryCaseData } from 'src/app/interfaces';
 import { Covid19APIService } from 'src/app/services/covid19API.service';
-import { ModalService } from 'src/app/shared/modules/modal/modal.service';
+import { ModalService } from 'src/app/shared/modal/modal.service';
+import { AddEditCountryCaseComponent } from '../add-edit-country-case/add-edit-country-case.component';
+import { MatDialog } from '@angular/material/dialog';
+
 
 interface ICountryData {
   id:string
@@ -30,14 +32,15 @@ export class ImportDataComponent implements AfterContentChecked{
  isLoading=false;
  addEditModalOpen = false;
  countryName="";
- countryCaseData:ICovidCountryData[] = []
-
+ countryCaseData:IGetCountryCaseData[] = []
+ editRecord = false;
 
 
  constructor(
   private toastr:ToastrService, 
-  private apiService:Covid19APIService, 
-  private modalService:ModalService
+  private apiService:Covid19APIService,
+  private modalService:ModalService,
+  private matDialog:MatDialog
 ){
 
  }
@@ -109,20 +112,34 @@ export class ImportDataComponent implements AfterContentChecked{
   })
  }
 
- openAddCaseModel(){
-  // this.modalService.open(modalTemplate, {size:'lg', title:'Add Country Case'}).subscribe((action:any)=>{
-  //   console.log('modalAction',action)
-  // })
-  this.addEditModalOpen = !this.addEditModalOpen;
 
+
+ editCountryCaseData(countryRecId:number, caseId:number,country:string, region:string, caseData:any){
+  const updateCaseData: IUpdateCountryCaseData = {
+    id: countryRecId,
+    country:country,
+    region:region,
+    case:{
+      id:Number(caseId),
+      date:caseData.date,
+      new:Number(caseData.new),
+      total:Number(caseData.total)
+    }
+  }
+  console.log(`update record : `,updateCaseData)
+
+  this.openEditCountryCaseDataModal(updateCaseData)
  }
 
- onCloseModal(event:any){
-  console.log("Close Modal : ",event)
+ openAddCaseModalComponent(){
+  this.matDialog.open(AddEditCountryCaseComponent)
  }
 
- editCountryCaseData(){
-  
+ openEditCountryCaseDataModal(data:IUpdateCountryCaseData){
+  this.matDialog.open(AddEditCountryCaseComponent, {
+    data:data
+  })
+ 
  }
 
 

@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import {  ICovidCountryData } from "../interfaces";
+import {  IAddCountryCaseData, ICovidCountryData, IGetCountryCaseData } from "../interfaces";
 import { ICommonResponse } from "../interfaces/CommonResponse.interface";
 
 @Injectable()
@@ -9,6 +9,8 @@ export class Covid19APIService{
     apiDbImportEndPoint = "https://localhost:44332/api/Covid19Data/save-data";
     apiDbDataGetEndPoint = "https://localhost:44332/api/Covid19Data/get-db-data";
     apiDbDataGetByCountryEndPoint = "https://localhost:44332/api/Covid19Data/get-db-data-country";
+    apiAddCountryCaseEndPoint = "https://localhost:44332/api/Covid19Data";
+
     constructor(private httpClient:HttpClient){
 
     }
@@ -46,7 +48,7 @@ export class Covid19APIService{
         // const params = new HttpParams()
         //     .set("country", countryName)
 
-        return this.httpClient.get<ICommonResponse<ICovidCountryData[]>>(requestURL)
+        return this.httpClient.get<ICommonResponse<IGetCountryCaseData[]>>(requestURL)
     }
 
     importDbDataByCountryName(countryName:string){
@@ -54,6 +56,11 @@ export class Covid19APIService{
         const params = new HttpParams()
             .set("country", countryName)
 
-        return this.httpClient.get<ICommonResponse<ICovidCountryData[]>>(requestURL,{params})
+        return this.httpClient.get<ICommonResponse<IGetCountryCaseData[]>>(requestURL,{params})
+    }
+
+    addCountryCaseData(data:IAddCountryCaseData){
+        const requestURL = `${this.apiAddCountryCaseEndPoint}`
+        return this.httpClient.post<ICommonResponse<IAddCountryCaseData>>(requestURL,data)
     }
 }
