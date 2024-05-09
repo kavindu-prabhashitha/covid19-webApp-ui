@@ -1,0 +1,11 @@
+<div class="modal-wrapper">
+  <section class="modal" #modal>
+    <ng-content></ng-content>
+    <div class="relative w-full">
+      <button class="flex-row-reverse" type="button" (click)="onClose()">Close</button>
+    </div>
+  </section>
+
+
+  <div class="modal-overlay" #overlay (click)="onClose()"></div>
+</div>

@@ -13,8 +13,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SearchCasesComponent } from './components/search-cases/search-cases.component';
 import { ImportDataComponent } from './components/import-data/import-data.component';
 import { ToastrModule } from 'ngx-toastr';
-import { ModalModule } from './shared/modules/modal/modal.module';
 import { AddEditCountryCaseComponent } from './components/add-edit-country-case/add-edit-country-case.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { AngularMaterialModule } from './angular-material.module';
 
 
 @NgModule({
@@ -42,11 +43,11 @@ import { AddEditCountryCaseComponent } from './components/add-edit-country-case/
       closeButton:true
     }),
     BrowserAnimationsModule,
-    ModalModule
+    AngularMaterialModule
   
    
   ],
-  providers: [Covid19APIService],
+  providers: [Covid19APIService, provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
