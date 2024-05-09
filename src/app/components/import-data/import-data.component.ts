@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component } from '@angular/core';
+import { AfterContentChecked, Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { IGetCountryCaseData, IUpdateCountryCaseData } from 'src/app/interfaces';
 import { Covid19APIService } from 'src/app/services/covid19API.service';
@@ -27,13 +27,14 @@ interface CaseData {
   templateUrl: './import-data.component.html',
   styleUrl: './import-data.component.css'
 })
-export class ImportDataComponent implements AfterContentChecked{
+export class ImportDataComponent implements AfterContentChecked, OnInit{
 
  isLoading=false;
  addEditModalOpen = false;
  countryName="";
  countryCaseData:IGetCountryCaseData[] = []
  editRecord = false;
+ countryList!:string[];
 
 
  constructor(
@@ -44,6 +45,9 @@ export class ImportDataComponent implements AfterContentChecked{
 ){
 
  }
+  ngOnInit(): void {
+    this.getCountryNameList()
+  }
 
 
 
@@ -140,6 +144,31 @@ export class ImportDataComponent implements AfterContentChecked{
     data:data
   })
  
+ }
+
+ getCountryNameList(){
+  this.apiService.getDbCountryNamesList().subscribe({
+    next: res=>{
+      console.log(res);
+      let names = this.setCountryNameList(res.data)
+      console.log("Country Names : ",names);
+      this.countryList = names
+
+    },
+    error: err =>{
+      console.log(err)
+    }
+  })
+ }
+
+ setCountryNameList(countryData : IGetCountryCaseData[]) : string[]{
+    const countryNames:string[] = [];
+    countryData.forEach((data)=>{
+      if(!(countryNames.includes(data.country))){
+        countryNames.push(data.country)
+      }
+    })
+    return countryNames
  }
 
 

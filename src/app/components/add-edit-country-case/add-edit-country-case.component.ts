@@ -67,9 +67,20 @@ export class AddEditCountryCaseComponent implements OnInit{
     this.countryCaseForm.reset();
    }
 
-   onAddCountryFormSubmit(){
+   onFormSubmit(){
     console.log("form Data : ",this.countryCaseForm.value);
 
+    if(this.editMode){
+      this.updateCountrycaseData()
+      return
+    }
+
+    this.addCountryCaseData()
+
+
+   }
+
+   addCountryCaseData(){
     if(this.countryCaseForm.invalid){
       this.toasterService.warning("Invalid Form Entries, Check Again")
       return
@@ -77,11 +88,11 @@ export class AddEditCountryCaseComponent implements OnInit{
     const caseData:IAddCountryCaseData = {
       country:this.countryCaseForm.value.country,
       region:this.countryCaseForm.value.region,
-      case:{
+      cases:[{
         date:this.countryCaseForm.value.date,
         new: Number(this.countryCaseForm.value.new),
         total:Number(this.countryCaseForm.value.total)
-      }
+      }]
     }
     this.apiService.addCountryCaseData(caseData).subscribe({
       next: res=>{
@@ -93,6 +104,40 @@ export class AddEditCountryCaseComponent implements OnInit{
       },
       error: error=>{
         console.log(error)
+      }
+    })
+   }
+
+   updateCountrycaseData(){
+    if(this.countryCaseForm.invalid){
+      this.toasterService.warning("Invalid Form Entries, Check Again")
+      return
+    }
+
+    const updateCaseData:IUpdateCountryCaseData = {
+      id:this.data.id,
+      country:this.countryCaseForm.value.country,
+      region:this.countryCaseForm.value.region,
+      case:{
+        id:this.data.case.id,
+        date:this.countryCaseForm.value.date,
+        new: Number(this.countryCaseForm.value.new),
+        total:Number(this.countryCaseForm.value.total)
+      }
+    }
+
+
+
+    this.apiService.updateCountryCaseData(updateCaseData).subscribe({
+      next: res=>{
+        if(res.success){
+          this.toasterService.success("Country Case Data Updated Successfully")
+        }
+        console.log(res)
+      },
+      error: error=>{
+        console.log(error)
+        this.toasterService.warning(error)
       }
     })
    }

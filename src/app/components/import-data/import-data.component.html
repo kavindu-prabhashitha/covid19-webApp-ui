@@ -6,17 +6,15 @@
             <select id="countries" [(ngModel)]="countryName"
                 class="w-[60%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value="" selected>Choose a country</option>
-                <option value="Canada">Canada</option>
+                <!-- <option value="Canada">Canada</option>
                 <option value="Sri lanka">Sri Lanka</option>
                 <option value="India">India</option>
                 <option value="Germany">Germany</option>
-                <option value="America">America</option>
+                <option value="America">America</option> -->
+                <option *ngFor="let name of countryList" [value]="name">{{name}}</option>
             </select>
 
-            <button type="button"
-                class="w-[15%] text-white mt-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                (click)="openAddCaseModalComponent()"> <span class="font-bold text-xl">+</span>
-                Add Case</button>
+
         </div>
 
         <button type="button"
@@ -31,6 +29,11 @@
             class="text-white mt-2 bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 focus:outline-none dark:focus:ring-yellow-800"
             (click)="viewImportData()">
             View All Country Data</button>
+
+            <button type="button"
+            class="ms-16 text-white mt-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5  mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            (click)="openAddCaseModalComponent()"> 
+            Add Case</button>
     </div>
 
 </div>

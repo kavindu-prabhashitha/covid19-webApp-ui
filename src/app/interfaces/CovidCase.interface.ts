@@ -29,11 +29,11 @@ export interface IGetCountryCaseData {
 export interface IAddCountryCaseData {
     country:string
     region:string
-    case:{
+    cases:[{
         date:Date,
         total:number,
         new:number
-    }
+    }]
 
 }
 
