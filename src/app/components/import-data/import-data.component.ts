@@ -136,13 +136,23 @@ export class ImportDataComponent implements AfterContentChecked, OnInit{
  }
 
  openAddCaseModalComponent(){
-  this.matDialog.open(AddEditCountryCaseComponent)
+  const dialogRef =  this.matDialog.open(AddEditCountryCaseComponent)
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog result from Add Country Case: ${result}`);
+    this.ngOnInit()
+  });
  }
 
  openEditCountryCaseDataModal(data:IUpdateCountryCaseData){
-  this.matDialog.open(AddEditCountryCaseComponent, {
+  const dialogRef = this.matDialog.open(AddEditCountryCaseComponent, {
     data:data
   })
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog result: ${result}`);
+    this.viewImportDataByCountry()
+  });
  
  }
 
