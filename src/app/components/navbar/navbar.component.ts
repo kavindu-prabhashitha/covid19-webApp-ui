@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,15 @@ export class NavbarComponent {
   @Input() navTitle = "";
   isDropdownOpen =false;
 
+  constructor(private router:Router){
+
+  }
+
   toggleDropDown(){
     this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  onLoginBtnClicked(){
+    this.router.navigateByUrl("login")
   }
 }

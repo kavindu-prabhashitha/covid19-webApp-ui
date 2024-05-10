@@ -16,6 +16,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { AddEditCountryCaseComponent } from './components/add-edit-country-case/add-edit-country-case.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AngularMaterialModule } from './angular-material.module';
+import { LoginComponent } from './components/login/login.component';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { AngularMaterialModule } from './angular-material.module';
     NavbarComponent,
     SearchCasesComponent,
     ImportDataComponent,
-    AddEditCountryCaseComponent
+    AddEditCountryCaseComponent,
+    LoginComponent
     
   ],
   imports: [
@@ -43,11 +46,12 @@ import { AngularMaterialModule } from './angular-material.module';
       closeButton:true
     }),
     BrowserAnimationsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    
   
    
   ],
-  providers: [Covid19APIService, provideAnimationsAsync()],
+  providers: [Covid19APIService, provideAnimationsAsync(), AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
