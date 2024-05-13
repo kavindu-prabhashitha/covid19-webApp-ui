@@ -21,4 +21,8 @@ export class NavbarComponent {
   onLoginBtnClicked(){
     this.router.navigateByUrl("login")
   }
+  
+  onRegisterBtnClicked(){
+    this.router.navigateByUrl("register")
+  }
 }

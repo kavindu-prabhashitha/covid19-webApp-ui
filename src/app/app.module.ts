@@ -18,6 +18,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { AngularMaterialModule } from './angular-material.module';
 import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './services/auth.service';
+import { RegisterComponent } from './components/register/register.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { AuthService } from './services/auth.service';
     SearchCasesComponent,
     ImportDataComponent,
     AddEditCountryCaseComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
     
   ],
   imports: [

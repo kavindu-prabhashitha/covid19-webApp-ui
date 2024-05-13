@@ -22,6 +22,10 @@ export class LoginComponent {
    }
 
    onLogin(){
+    if(this.loginForm.invalid){
+      this.toaster.warning("Check input Credentials")
+      return
+    }
     const user:ILoginUser = {
       username:this.loginForm.value.username,
       password:this.loginForm.value.password,

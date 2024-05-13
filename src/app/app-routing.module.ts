@@ -4,13 +4,15 @@ import { AppComponent } from "./app.component";
 import { SearchCasesComponent } from "./components/search-cases/search-cases.component";
 import { ImportDataComponent } from "./components/import-data/import-data.component";
 import { LoginComponent } from "./components/login/login.component";
+import { RegisterComponent } from "./components/register/register.component";
 
 const routes:Routes = [
     {path:'',
      children:[
             {path:'',component:SearchCasesComponent},
             {path:'import-case',component:ImportDataComponent},
-            {path:'login', component:LoginComponent}
+            {path:'login', component:LoginComponent},
+            {path:'register', component:RegisterComponent}
         ]
 
     }
