@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -19,6 +19,9 @@ import { AngularMaterialModule } from './angular-material.module';
 import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './services/auth.service';
 import { RegisterComponent } from './components/register/register.component';
+import { AuthInterceptorService } from './interceptors/auth.interceptor.service';
+import { AuthTokenInterceptorService } from './interceptors/auth-token.interceptor.service';
+import { LogginInterceptorService } from './interceptors/loggin.interceptor.service';
 
 
 @NgModule({
@@ -53,7 +56,26 @@ import { RegisterComponent } from './components/register/register.component';
   
    
   ],
-  providers: [Covid19APIService, provideAnimationsAsync(), AuthService],
+  providers: [
+    // {
+    //   provide:HTTP_INTERCEPTORS, 
+    //   useClass:AuthInterceptorService, 
+    //   multi:true
+    // },
+    // {
+    //   provide:HTTP_INTERCEPTORS, 
+    //   useClass:LogginInterceptorService, 
+    //   multi:true
+    // },
+    {
+      provide:HTTP_INTERCEPTORS, 
+      useClass:AuthTokenInterceptorService, 
+      multi:true
+    },
+    Covid19APIService, 
+    provideAnimationsAsync(), 
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

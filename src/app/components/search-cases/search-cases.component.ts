@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Cases, ICovidCountryData } from 'src/app/interfaces';
 import { ICommonResponse } from 'src/app/interfaces/CommonResponse.interface';
 import { Covid19APIService } from 'src/app/services/covid19API.service';
@@ -18,12 +19,17 @@ export class SearchCasesComponent {
 
   covidCases:Cases[] = []
 
-  constructor(private covid19DataService:Covid19APIService){
+  constructor(private covid19DataService:Covid19APIService, private toaster:ToastrService){
 
   }
 
   getCovidData(){
     this.isLoading = true;
+    if(!this.countryName){
+      this.toaster.warning("Check Inputs..");
+      this.isLoading = false;
+      return
+    }
     if(this.countryName && this.regionName){
       this.getCovidDataByCountryAndRegion(this.countryName,this.regionName)
       return
@@ -33,8 +39,6 @@ export class SearchCasesComponent {
       this.getCovidDataByCountry(this.countryName)
     }
 
-
-    
   }
 
   getCovidDataByCountry(countryName:string){
