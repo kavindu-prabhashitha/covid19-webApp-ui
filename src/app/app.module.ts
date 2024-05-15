@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -16,6 +16,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { AddEditCountryCaseComponent } from './components/add-edit-country-case/add-edit-country-case.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AngularMaterialModule } from './angular-material.module';
+import { LoginComponent } from './components/login/login.component';
+import { AuthService } from './services/auth.service';
+import { RegisterComponent } from './components/register/register.component';
+import { AuthTokenInterceptorService } from './interceptors/auth-token.interceptor.service';
+
 
 
 @NgModule({
@@ -25,7 +30,9 @@ import { AngularMaterialModule } from './angular-material.module';
     NavbarComponent,
     SearchCasesComponent,
     ImportDataComponent,
-    AddEditCountryCaseComponent
+    AddEditCountryCaseComponent,
+    LoginComponent,
+    RegisterComponent
     
   ],
   imports: [
@@ -43,11 +50,21 @@ import { AngularMaterialModule } from './angular-material.module';
       closeButton:true
     }),
     BrowserAnimationsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    
   
    
   ],
-  providers: [Covid19APIService, provideAnimationsAsync()],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS, 
+      useClass:AuthTokenInterceptorService, 
+      multi:true
+    },
+    Covid19APIService, 
+    provideAnimationsAsync(), 
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
