@@ -13,10 +13,14 @@ export class NavbarComponent implements OnInit{
   isAuthenticated=false;
 
   constructor(private router:Router, private authService:AuthService){
-
+      
   }
   ngOnInit(): void {
-    console.log("onInit NavBar.....")
+    this.authService.isAuthenticated.subscribe({
+      next: res=>{
+        this.isAuthenticated = res
+      }
+    })
   }
 
   toggleDropDown(){

@@ -19,9 +19,8 @@ import { AngularMaterialModule } from './angular-material.module';
 import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './services/auth.service';
 import { RegisterComponent } from './components/register/register.component';
-import { AuthInterceptorService } from './interceptors/auth.interceptor.service';
 import { AuthTokenInterceptorService } from './interceptors/auth-token.interceptor.service';
-import { LogginInterceptorService } from './interceptors/loggin.interceptor.service';
+
 
 
 @NgModule({
@@ -57,16 +56,6 @@ import { LogginInterceptorService } from './interceptors/loggin.interceptor.serv
    
   ],
   providers: [
-    // {
-    //   provide:HTTP_INTERCEPTORS, 
-    //   useClass:AuthInterceptorService, 
-    //   multi:true
-    // },
-    // {
-    //   provide:HTTP_INTERCEPTORS, 
-    //   useClass:LogginInterceptorService, 
-    //   multi:true
-    // },
     {
       provide:HTTP_INTERCEPTORS, 
       useClass:AuthTokenInterceptorService, 

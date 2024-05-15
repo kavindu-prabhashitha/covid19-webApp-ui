@@ -89,7 +89,7 @@ export class ImportDataComponent implements AfterContentChecked, OnInit{
  }
 
  viewImportDataByCountry(){
-  this.isLoading =true;
+  //this.isLoading =true;
   if(this.countryName === ''){
     this.toastr.info("Please select a Country before importing!")
     this.isLoading=false
@@ -163,6 +163,7 @@ export class ImportDataComponent implements AfterContentChecked, OnInit{
       let names = this.setCountryNameList(res.data)
       console.log("Country Names : ",names);
       this.countryList = names
+      this.isLoading = false
 
     },
     error: err =>{
@@ -183,7 +184,7 @@ export class ImportDataComponent implements AfterContentChecked, OnInit{
 
 
  ngAfterContentChecked(): void {
-  console.log(this.countryName);
+  //console.log(this.countryName);
 }
  
 }

@@ -11,8 +11,14 @@ export interface IRegisterUser{
 export interface ILoginResponse{
     data:{
         accessToken:string,
-        refreshToken:string
+        refreshToken:string,
+        userName:string
     },
     message:string,
     success:boolean
+}
+
+export interface IRevokeRefreshToken{
+    userName:string;
+    refreshToken:string;
 }
