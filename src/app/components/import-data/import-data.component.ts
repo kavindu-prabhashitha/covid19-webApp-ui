@@ -2,9 +2,9 @@ import { AfterContentChecked, Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { IGetCountryCaseData, IUpdateCountryCaseData } from 'src/app/interfaces';
 import { Covid19APIService } from 'src/app/services/covid19API.service';
-import { ModalService } from 'src/app/shared/modal/modal.service';
 import { AddEditCountryCaseComponent } from '../add-edit-country-case/add-edit-country-case.component';
 import { MatDialog } from '@angular/material/dialog';
+import { UserService } from 'src/app/services/user.service';
 
 
 interface ICountryData {
@@ -40,13 +40,19 @@ export class ImportDataComponent implements AfterContentChecked, OnInit{
  constructor(
   private toastr:ToastrService, 
   private apiService:Covid19APIService,
-  private modalService:ModalService,
-  private matDialog:MatDialog
+  private matDialog:MatDialog,
+  private userService:UserService
 ){
 
  }
   ngOnInit(): void {
     this.getCountryNameList()
+
+    this.userService.getCurrentUser().subscribe({
+      next: res=>{
+        console.log("Current User : ",res)
+      }
+    })
   }
 
 
