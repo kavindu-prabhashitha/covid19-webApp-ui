@@ -20,6 +20,12 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './services/auth.service';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthTokenInterceptorService } from './interceptors/auth-token.interceptor.service';
+import { UserService } from './services/user.service';
+import { JwtModule } from '@auth0/angular-jwt';
+import { IfAdminUser } from './directives/if-admin.directive';
+import { IfUser } from './directives/if-user.directive';
+import { IsGrantedDirective } from './directives/is-granted.directive';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 
@@ -32,7 +38,11 @@ import { AuthTokenInterceptorService } from './interceptors/auth-token.intercept
     ImportDataComponent,
     AddEditCountryCaseComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserProfileComponent,
+    IfAdminUser,
+    IfUser,
+    IsGrantedDirective
     
   ],
   imports: [
@@ -51,7 +61,11 @@ import { AuthTokenInterceptorService } from './interceptors/auth-token.intercept
     }),
     BrowserAnimationsModule,
     AngularMaterialModule,
-    
+    JwtModule.forRoot({
+      config:{
+        tokenGetter:()=>localStorage.getItem("accessToken")
+      }
+    })
   
    
   ],
@@ -63,7 +77,9 @@ import { AuthTokenInterceptorService } from './interceptors/auth-token.intercept
     },
     Covid19APIService, 
     provideAnimationsAsync(), 
-    AuthService
+    AuthService,
+    UserService,
+  
   ],
   bootstrap: [AppComponent]
 })

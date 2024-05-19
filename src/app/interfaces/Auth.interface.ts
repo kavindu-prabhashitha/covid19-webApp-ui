@@ -6,6 +6,7 @@ export interface ILoginUser{
 export interface IRegisterUser{
     username:string;
     password:string;
+    role?:string
 }
 
 export interface ILoginResponse{

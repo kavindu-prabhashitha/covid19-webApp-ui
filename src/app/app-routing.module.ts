@@ -6,6 +6,7 @@ import { ImportDataComponent } from "./components/import-data/import-data.compon
 import { LoginComponent } from "./components/login/login.component";
 import { RegisterComponent } from "./components/register/register.component";
 import { authGuard } from "./guards/auth.guard";
+import { UserProfileComponent } from "./components/user-profile/user-profile.component";
 
 const routes:Routes = [
     {path:'',
@@ -13,7 +14,8 @@ const routes:Routes = [
             {path:'',component:SearchCasesComponent},
             {path:'import-case',component:ImportDataComponent, canActivate:[authGuard]},
             {path:'login', component:LoginComponent},
-            {path:'register', component:RegisterComponent}
+            {path:'register', component:RegisterComponent},
+            {path:'profile', component:UserProfileComponent, canActivate:[authGuard]},
         ]
 
     }
