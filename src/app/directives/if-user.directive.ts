@@ -27,7 +27,7 @@ export class IfUser implements OnInit{
     // }
 
     ngOnInit(): void {
-    this.userService.getCurrentUserV2()
+    this.userService.getCurrentUser()
     .pipe(takeUntil(this.destroyed$))
     .subscribe((currentUser) => {
       this.ngIfDirective.ngIf = currentUser.role ===UserRole.USER ? true : false;

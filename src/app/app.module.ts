@@ -24,6 +24,7 @@ import { UserService } from './services/user.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { IfAdminUser } from './directives/if-admin.directive';
 import { IfUser } from './directives/if-user.directive';
+import { IsGrantedDirective } from './directives/is-granted.directive';
 
 
 
@@ -38,7 +39,8 @@ import { IfUser } from './directives/if-user.directive';
     LoginComponent,
     RegisterComponent,
     IfAdminUser,
-    IfUser
+    IfUser,
+    IsGrantedDirective
     
   ],
   imports: [
@@ -74,7 +76,8 @@ import { IfUser } from './directives/if-user.directive';
     Covid19APIService, 
     provideAnimationsAsync(), 
     AuthService,
-    UserService
+    UserService,
+  
   ],
   bootstrap: [AppComponent]
 })

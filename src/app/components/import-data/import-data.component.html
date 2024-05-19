@@ -166,3 +166,14 @@
     <h3>This Content Can Be Viewed By EveryOne</h3>
 </div>
 
+<div>
+    <div *isGranted="'ADMINISTRATOR'">
+        This text is visible for staff members only
+      </div>
+      <div *isGranted="'USER'">
+        This text is visible for user members
+      </div>
+      <div *isGranted="'ANONYMOUS'">
+        This text is visible for user members
+      </div>
+</div>

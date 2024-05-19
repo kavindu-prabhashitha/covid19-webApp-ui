@@ -3,34 +3,24 @@ import { Injectable } from "@angular/core";
 import {  IAddCountryCaseData, ICovidCountryData, IGetCountryCaseData, IUpdateCountryCaseData } from "../interfaces";
 import { ICommonResponse } from "../interfaces/CommonResponse.interface";
 import { API_PORT, API_PROTOCOL } from "./auth.service";
+import { API_ADD_COUNTRY_CASE_TO_DB, API_ALL_COVID19_DATA, API_GET_ALL_DB_COUNTRY_DATA, API_GET_DB_COUNTRY_NAMES, API_GET_DB_DATA_BY_COUNTRY_NAME, API_SAVE_DATA_DB, API_UPDATE_COUNTRY_CASE_TO_DB } from "../constants";
 
 @Injectable()
 export class Covid19APIService{
-    apiEndPoint = `${API_PROTOCOL}://localhost:${API_PORT}/api/Covid19Data/country`;
-    apiDbImportEndPoint = `${API_PROTOCOL}://localhost:${API_PORT}/api/Covid19Data/save-data`;
-    apiDbDataGetEndPoint = `${API_PROTOCOL}://localhost:${API_PORT}/api/Covid19Data/get-db-data`;
-    apiDbDataGetByCountryEndPoint = `${API_PROTOCOL}://localhost:${API_PORT}/api/Covid19Data/get-db-data-country`;
-    apiAddCountryCaseEndPoint = `${API_PROTOCOL}://localhost:${API_PORT}/api/Covid19Data`;
-    apiUpdateCountryCaseEndPoint = `${API_PROTOCOL}://localhost:${API_PORT}/api/Covid19Data`;
-    apiDbCountryNames = `${API_PROTOCOL}://localhost:${API_PORT}/api/Covid19Data/get-all-country-names`
 
-    constructor(private httpClient:HttpClient){
+    constructor(private httpClient:HttpClient){}
 
-    }
-
-    getAllCovid19Data(){
-
-    }
+    getAllCovid19Data(){}
 
     getCovidDataByCountry(countryName:string){
-        const requestURL = `${this.apiEndPoint}`
+        const requestURL = API_ALL_COVID19_DATA
         const params = new HttpParams()
             .set("country", countryName)
         return this.httpClient.get<ICommonResponse<ICovidCountryData[]>>(requestURL,{params})
     }
 
     getCovidDataByCountryAndRegion(countryName:string, region:string){
-        const requestURL = `${this.apiEndPoint}`
+        const requestURL = API_ALL_COVID19_DATA
         const params = new HttpParams()
             .set("country", countryName)
             .set("region",region)
@@ -39,7 +29,7 @@ export class Covid19APIService{
     }
 
     importDataToDatabase(countryName:string){
-        const requestURL = `${this.apiDbImportEndPoint}`
+        const requestURL = API_SAVE_DATA_DB
         const params = new HttpParams()
             .set("country", countryName)
 
@@ -47,15 +37,12 @@ export class Covid19APIService{
     }
 
     importCountryDataFromDB(){
-        const requestURL = `${this.apiDbDataGetEndPoint}`
-        // const params = new HttpParams()
-        //     .set("country", countryName)
-
+        const requestURL = API_GET_ALL_DB_COUNTRY_DATA
         return this.httpClient.get<ICommonResponse<IGetCountryCaseData[]>>(requestURL)
     }
 
     importDbDataByCountryName(countryName:string){
-        const requestURL = `${this.apiDbDataGetByCountryEndPoint}`
+        const requestURL = API_GET_DB_DATA_BY_COUNTRY_NAME
         const params = new HttpParams()
             .set("country", countryName)
 
@@ -63,16 +50,16 @@ export class Covid19APIService{
     }
 
     addCountryCaseData(data:IAddCountryCaseData){
-        const requestURL = `${this.apiAddCountryCaseEndPoint}`
+        const requestURL = API_ADD_COUNTRY_CASE_TO_DB
         return this.httpClient.post<ICommonResponse<IAddCountryCaseData>>(requestURL,data)
     }
     updateCountryCaseData(data:IUpdateCountryCaseData){
-        const requestURL = `${this.apiUpdateCountryCaseEndPoint}`
+        const requestURL = API_UPDATE_COUNTRY_CASE_TO_DB
         return this.httpClient.put<ICommonResponse<IUpdateCountryCaseData>>(requestURL,data)
     }
 
     getDbCountryNamesList(){
-        const requestURL = `${this.apiDbCountryNames}`
+        const requestURL = API_GET_DB_COUNTRY_NAMES
         return this.httpClient.get<ICommonResponse<IGetCountryCaseData[]>>(requestURL)
     }
 }

@@ -7,17 +7,14 @@ import { UserService } from "./user.service";
 import { User } from "../interfaces/User.interface";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { UserRole } from "../constants/UserRoles.enum";
+import { API_LOGIN_USER, API_REFRESH_TOKEN, API_REGISTER_USER, API_REVOKE_REFRESH_TOKEN } from "../constants";
 
-export const API_PORT = 5169;
-export const API_PROTOCOL = "http";
+export const API_PORT = 44332;
+export const API_PROTOCOL = "https";
 
 
 @Injectable()
 export class AuthService{
-    private readonly loginApiEndpoint = `${API_PROTOCOL}://localhost:${API_PORT}/Auth/Login`;
-    private readonly registerUserApiEndpoint = `${API_PROTOCOL}://localhost:${API_PORT}/Auth/Register`
-    private readonly refreshTokenEndpoint = `${API_PROTOCOL}://localhost:${API_PORT}/Auth/refresh-token`
-    private readonly revokeRefreshTokenEndpoint = `${API_PROTOCOL}://localhost:${API_PORT}/Auth/revoke-refresh-token`
 
     isAuthenticated = new BehaviorSubject(false);
     constructor(
@@ -30,7 +27,7 @@ export class AuthService{
     }
 
     login(data:ILoginUser){
-        return this.http.post<ILoginResponse>(this.loginApiEndpoint,data).pipe(
+        return this.http.post<ILoginResponse>(API_LOGIN_USER,data).pipe(
             tap(res=>{
                 console.log(res);
                 if(res.data){
@@ -46,6 +43,7 @@ export class AuthService{
                         role: token.role
                     }
                     console.log("Current user : ",user)
+                    this.userService.setCurrentUser(user)
 
                 }
                 
@@ -78,8 +76,8 @@ export class AuthService{
         localStorage.removeItem("refreshToken")
         localStorage.removeItem("accessToken");
         const user: User =  {
-            userName : UserRole.ANONIMUS,
-            role: UserRole.ANONIMUS
+            userName : UserRole.ANONYMOUS,
+            role: UserRole.ANONYMOUS
         }
         this.isAuthenticated.next(false);
         this.userService.setCurrentUser(user)
@@ -88,7 +86,7 @@ export class AuthService{
     }
 
     register(user:IRegisterUser){
-        return this.http.post(this.registerUserApiEndpoint,user)
+        return this.http.post(API_REGISTER_USER,user)
     }
 
     refreshToken(){
@@ -96,17 +94,17 @@ export class AuthService{
         let refreshToken = localStorage.getItem("refreshToken")
         if(accessToken && refreshToken){
             
-            return this.http.post(this.refreshTokenEndpoint,{
+            return this.http.post(API_REFRESH_TOKEN,{
                 accessToken:accessToken,
                 refreshToken: refreshToken
             })
         }
 
-        return this.http.post(this.registerUserApiEndpoint,{})
+        return this.http.post(API_REGISTER_USER,{})
     }
 
     revokeToken(data:IRevokeRefreshToken){
-        return this.http.post(this.revokeRefreshTokenEndpoint,data)
+        return this.http.post(API_REVOKE_REFRESH_TOKEN,data)
     }
 
     clearLocalStorage(){
