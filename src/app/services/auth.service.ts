@@ -7,7 +7,7 @@ import { UserService } from "./user.service";
 import { User } from "../interfaces/User.interface";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { UserRole } from "../constants/UserRoles.enum";
-import { API_LOGIN_USER, API_REFRESH_TOKEN, API_REGISTER_USER, API_REVOKE_REFRESH_TOKEN } from "../constants";
+import { API_LOGIN_USER, API_REFRESH_TOKEN, API_REGISTER_ADMIN, API_REGISTER_USER, API_REVOKE_REFRESH_TOKEN } from "../constants";
 
 export const API_PORT = 44332;
 export const API_PROTOCOL = "https";
@@ -75,6 +75,7 @@ export class AuthService{
     logout(){
         localStorage.removeItem("refreshToken")
         localStorage.removeItem("accessToken");
+        localStorage.removeItem("userName");
         const user: User =  {
             userName : UserRole.ANONYMOUS,
             role: UserRole.ANONYMOUS
@@ -87,6 +88,10 @@ export class AuthService{
 
     register(user:IRegisterUser){
         return this.http.post(API_REGISTER_USER,user)
+    }
+
+    registerAdmin(adminUser:IRegisterUser){
+        return this.http.post(API_REGISTER_ADMIN,adminUser)
     }
 
     refreshToken(){

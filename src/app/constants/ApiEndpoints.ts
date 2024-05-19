@@ -4,6 +4,7 @@ export const API_PROTOCOL = "https"
 // Authentication
 export const API_LOGIN_USER = `${API_PROTOCOL}://localhost:${API_PORT}/Auth/Login`;
 export const API_REGISTER_USER = `${API_PROTOCOL}://localhost:${API_PORT}/Auth/Register`;
+export const API_REGISTER_ADMIN = `${API_PROTOCOL}://localhost:${API_PORT}/Auth/Register-Admin`;
 export const API_REFRESH_TOKEN = `${API_PROTOCOL}://localhost:${API_PORT}/Auth/refresh-token`;
 export const API_REVOKE_REFRESH_TOKEN = `${API_PROTOCOL}://localhost:${API_PORT}/Auth/revoke-refresh-token`;
 

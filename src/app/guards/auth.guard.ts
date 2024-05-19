@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 export const authGuard: CanActivateFn = (route:ActivatedRouteSnapshot, state:RouterStateSnapshot) => {
   const router:Router = inject(Router);
   const toaster:ToastrService = inject(ToastrService)
-  const protectedRoutes:string[]=["/import-case"]
+  const protectedRoutes:string[]=["/import-case","/profile"]
 
   const accessToken = localStorage.getItem("accessToken")
 

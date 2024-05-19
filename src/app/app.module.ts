@@ -25,6 +25,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { IfAdminUser } from './directives/if-admin.directive';
 import { IfUser } from './directives/if-user.directive';
 import { IsGrantedDirective } from './directives/is-granted.directive';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 
@@ -38,6 +39,7 @@ import { IsGrantedDirective } from './directives/is-granted.directive';
     AddEditCountryCaseComponent,
     LoginComponent,
     RegisterComponent,
+    UserProfileComponent,
     IfAdminUser,
     IfUser,
     IsGrantedDirective
