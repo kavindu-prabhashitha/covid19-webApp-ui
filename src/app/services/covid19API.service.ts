@@ -2,8 +2,14 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import {  IAddCountryCaseData, ICovidCountryData, IGetCountryCaseData, IUpdateCountryCaseData } from "../interfaces";
 import { ICommonResponse } from "../interfaces/CommonResponse.interface";
-import { API_PORT, API_PROTOCOL } from "./auth.service";
-import { API_ADD_COUNTRY_CASE_TO_DB, API_ALL_COVID19_DATA, API_GET_ALL_DB_COUNTRY_DATA, API_GET_DB_COUNTRY_NAMES, API_GET_DB_DATA_BY_COUNTRY_NAME, API_SAVE_DATA_DB, API_UPDATE_COUNTRY_CASE_TO_DB } from "../constants";
+import { 
+    API_ADD_COUNTRY_CASE_TO_DB,
+    API_ALL_COVID19_DATA, 
+    API_GET_ALL_DB_COUNTRY_DATA, 
+    API_GET_DB_COUNTRY_NAMES, 
+    API_GET_DB_DATA_BY_COUNTRY_NAME, 
+    API_SAVE_DATA_DB, 
+    API_UPDATE_COUNTRY_CASE_TO_DB } from "../constants";
 
 @Injectable()
 export class Covid19APIService{

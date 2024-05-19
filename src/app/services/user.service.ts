@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, Subject, map, startWith } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 import { User } from "../interfaces/User.interface";
 import { UserRole } from "../constants/UserRoles.enum";
 
@@ -17,11 +17,6 @@ export class UserService{
         console.log(this._roleMap)
     }
   
-
-    // getCurrentUser =() : Observable<User>=>{
-    //     return this.#currentUser$.asObservable();
-    // }
-
     getCurrentUser(){
         console.log("Current User Name: ",this.#currentUser$.value)
         return this.#currentUser$;
@@ -45,7 +40,5 @@ export class UserService{
           }
 
           return this._roleMap.get(this.#currentUser$.value.role).includes(roleOrPermission)
-          //return this.#currentUser$.value.role === roleOrPermission
-
     }
 }
