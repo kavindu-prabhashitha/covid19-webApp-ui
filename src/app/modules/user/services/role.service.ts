@@ -4,9 +4,7 @@ import { API_GET_ROLES } from 'src/app/constants';
 import { ICommonResponse } from 'src/app/interfaces/CommonResponse.interface';
 import { IGetRoles } from 'src/app/interfaces/Roles.interface';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class RoleService {
 
   constructor(private http:HttpClient) { }
