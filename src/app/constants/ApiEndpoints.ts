@@ -19,6 +19,7 @@ export const API_GET_DB_COUNTRY_NAMES = `${API_PROTOCOL}://localhost:${API_PORT}
 
 //Roles
 export const API_GET_ROLES = `${API_PROTOCOL}://localhost:${API_PORT}/api/UserRole`;
+export const API_GET_ROLE_BY_ID = `${API_PROTOCOL}://localhost:${API_PORT}/api/UserRole/GetRoleById`;
 export const API_CREATE_ROLE = `${API_PROTOCOL}://localhost:${API_PORT}/api/UserRole`;
 export const API_UPDATE_ROLE = `${API_PROTOCOL}://localhost:${API_PORT}/api/UserRole`;
 

@@ -7,6 +7,14 @@ import { PermissionsComponent } from './components/permissions/permissions.compo
 import { PermissionService } from './services/permission.service';
 import { RoleService } from './services/role.service';
 import { HttpClientModule } from '@angular/common/http';
+import { LoadingComponent } from 'src/app/shared/components/loading/loading.component';
+import { ToastrModule } from 'ngx-toastr';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddEditPermissionComponent } from './components/permissions/add-edit-permission/add-edit-permission.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddEditRoleComponent } from './components/roles/add-edit-role/add-edit-role.component';
+import { ManageRoleComponent } from './components/manage-role/manage-role.component';
+import { UpgradePermissionsComponent } from './components/manage-role/upgrade-permissions/upgrade-permissions.component';
 
 
 
@@ -14,7 +22,12 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     UserComponent,
     RolesComponent,
-    PermissionsComponent
+    PermissionsComponent,
+    AddEditPermissionComponent,
+    AddEditRoleComponent,
+    ManageRoleComponent,
+    UpgradePermissionsComponent
+  
   ],
   providers:[
     PermissionService,
@@ -23,7 +36,11 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     UserRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    LoadingComponent,
+    ToastrModule,
+    MatDialogModule,
+    ReactiveFormsModule
   ]
 })
 export class UserModule { }

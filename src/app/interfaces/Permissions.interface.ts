@@ -8,3 +8,9 @@ export interface IPermission{
 export interface IGetAllPermisions extends IPermission{
 
 }
+
+export interface ICreatePermission{
+    name:string
+    rPid:number
+    description?:string
+}
