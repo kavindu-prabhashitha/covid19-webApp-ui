@@ -13,7 +13,8 @@ export interface ILoginResponse{
     data:{
         accessToken:string,
         refreshToken:string,
-        userName:string
+        userName:string,
+        userId:number
     },
     message:string,
     success:boolean

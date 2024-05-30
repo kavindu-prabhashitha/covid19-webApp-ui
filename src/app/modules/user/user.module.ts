@@ -20,6 +20,8 @@ import { EditIconComponent } from 'src/app/shared/components/icons/edit-icon.com
 import { UsersComponent } from './components/users/users.component';
 import { ManageUsersComponent } from './components/users/manage-users/manage-users.component';
 import { AddEditUserComponent } from './components/users/add-edit-user/add-edit-user.component';
+import { OverviewComponent } from './components/overview/overview.component';
+import { IsPermissionGrantedDirective } from 'src/app/directives/is-permission-granted.directive';
 
 const icons = [
   EditIconComponent,
@@ -37,8 +39,10 @@ const icons = [
     ManageRoleComponent,
     UpgradePermissionsComponent,
     UsersComponent,
+    OverviewComponent,
     ManageUsersComponent,
-    AddEditUserComponent
+    AddEditUserComponent,
+    IsPermissionGrantedDirective
   
   ],
   providers:[

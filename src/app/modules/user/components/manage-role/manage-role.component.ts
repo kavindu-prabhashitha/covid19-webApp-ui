@@ -2,10 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription, concatMap,  of,  } from 'rxjs';
 import { RoleService } from '../../services/role.service';
-import { IRole } from 'src/app/interfaces';
+import { IPermission, IRemoveRolePermission, IRole } from 'src/app/interfaces';
 import { MatDialog } from '@angular/material/dialog';
 import { UpgradePermissionsComponent } from './upgrade-permissions/upgrade-permissions.component';
 import { PreviousRouteService } from 'src/app/services/previous-route.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-role',
@@ -27,6 +28,7 @@ export class ManageRoleComponent implements OnInit,OnDestroy{
     private router:Router,
     private roleService:RoleService,
     private matDialog:MatDialog,
+    private toastr:ToastrService
 
 
   ){}
@@ -77,6 +79,25 @@ export class ManageRoleComponent implements OnInit,OnDestroy{
 
   goToPreviousRoute(){
     this.router.navigateByUrl(this.previousRoute)
+  }
+
+  removePermission(pData:IPermission){
+    const tempRec: IRemoveRolePermission = {
+      userRoleId: this.roleData.id,
+      permissionId: pData.id
+    }
+    this.roleService.RemovePermissionFromRole(tempRec).subscribe({
+      next: res => {
+        if(res.success){
+          this.toastr.success("Permission Removed Successfully")
+          this.ngOnInit();
+          
+        }
+      },
+      error: err=>{
+        this.toastr.warning("Permission Remove Fialed...")
+      }
+    })
   }
 
   ngOnDestroy(): void {

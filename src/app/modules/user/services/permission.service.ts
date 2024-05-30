@@ -7,9 +7,12 @@ import { ICommonResponse } from 'src/app/interfaces/CommonResponse.interface';
 @Injectable()
 export class PermissionService {
 
+  
+
   constructor(private http:HttpClient) {
 
    }
+
 
    GetPermissions(){
      return this.http.get<ICommonResponse<IPermission[]>>(API_GET_ROLE_PERMISSION)

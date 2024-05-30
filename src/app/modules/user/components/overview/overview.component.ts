@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-overview',
-  standalone: true,
-  imports: [],
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.css'
 })

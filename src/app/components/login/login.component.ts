@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { concatMap } from 'rxjs';
 import { ILoginUser } from 'src/app/interfaces/Auth.interface';
+import { UserNewService } from 'src/app/modules/user/services/user-new.service';
+import { AccessPermissionService } from 'src/app/services/access-permission.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -19,7 +22,9 @@ export class LoginComponent {
    })
 
    constructor(
-    private authService:AuthService, 
+    private authService:AuthService,
+    private userServie:UserNewService, 
+    private accessPermissionService:AccessPermissionService,
     private toaster:ToastrService,
     private router : Router
   ){
@@ -36,10 +41,15 @@ export class LoginComponent {
       password:this.loginForm.value.password,
     }
     console.log("Login Data : ", user)
-    this.authService.login(user).subscribe({
+    this.authService.login(user).pipe(
+      concatMap((res)=>{
+          return this.userServie.GetPermissionsByUserId(res.data.userId)
+      })
+    ).subscribe({
       next:res=>{
-        console.log(res);
+        console.log("Login response Data : ",res);
         this.responseObject = res;
+        this.accessPermissionService.setCurrentUserPermissions(res.data)
         this.toaster.success("User Login Success");
         this.router.navigate(['/import-case'])
       },

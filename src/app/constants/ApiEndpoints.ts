@@ -23,6 +23,7 @@ export const API_GET_ROLE_BY_ID = `${API_PROTOCOL}://localhost:${API_PORT}/api/U
 export const API_CREATE_ROLE = `${API_PROTOCOL}://localhost:${API_PORT}/api/UserRole`;
 export const API_UPDATE_ROLE = `${API_PROTOCOL}://localhost:${API_PORT}/api/UserRole`;
 export const API_UPGRADE_ROLE_PERMISSION = `${API_PROTOCOL}://localhost:${API_PORT}/api/UserRole/add-permissions-to-role`;
+export const API_REMOVE_ROLE_PERMISSION = `${API_PROTOCOL}://localhost:${API_PORT}/api/UserRole/remove-permissions-from-role`;
 
 
 //Permissions
@@ -33,3 +34,5 @@ export const API_UPDATE_ROLE_PERMISSION = `${API_PROTOCOL}://localhost:${API_POR
 //Users
 export const API_GET_ALL_USERS = `${API_PROTOCOL}://localhost:${API_PORT}/api/User`;
 export const API_UPGRADE_USER_ROLE = `${API_PROTOCOL}://localhost:${API_PORT}/Auth/UpdateUserRole`;
+export const API_GET_USER_BY_ID = `${API_PROTOCOL}://localhost:${API_PORT}/api/User/GetUserById`;
+export const API_GET_PERMISSIONS_BY_USER_ID = `${API_PROTOCOL}://localhost:${API_PORT}/api/User/GetPermissionsByUserId`;
