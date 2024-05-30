@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEditRoleComponent } from './add-edit-role/add-edit-role.component';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-roles',
@@ -14,7 +15,11 @@ import { Router } from '@angular/router';
 })
 export class RolesComponent implements OnInit{
   isLoading = false;
-  roles:IRole[] = []
+  roles:IRole[] = [];
+
+  //Substriptions
+  roleServiceSub!:Subscription;
+  dialogSub!:Subscription;
 
   constructor(
     private roleService:RoleService,
@@ -27,7 +32,7 @@ export class RolesComponent implements OnInit{
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.roleService.GetRoles().subscribe({
+    this.roleServiceSub = this.roleService.GetRoles().subscribe({
       next: (res)=>{
         this.roles = res.data
         console.log(res)
@@ -43,7 +48,7 @@ export class RolesComponent implements OnInit{
   createRole(){
     const dialogRef = this.matDialog.open(AddEditRoleComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
+    this. dialogSub = dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result from Add Edit Role: ${result}`);
       this.ngOnInit()
     });
@@ -55,6 +60,25 @@ export class RolesComponent implements OnInit{
       ['user-module/manage-role'],
       {queryParams: {id}}
     )
+  }
+
+  editRole(role:IRole){
+    const dialogRef = this.matDialog.open(AddEditRoleComponent,{
+      data:role
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result from Add Edit Role: ${result}`);
+      this.ngOnInit()
+    });
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if(this.roleServiceSub) this.roleServiceSub.unsubscribe();
+    if(this.dialogSub) this.dialogSub.unsubscribe();
+    
   }
 
 }

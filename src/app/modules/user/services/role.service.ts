@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API_CREATE_ROLE, API_GET_ROLES, API_GET_ROLE_BY_ID } from 'src/app/constants';
+import { API_CREATE_ROLE, API_GET_ROLES, API_GET_ROLE_BY_ID, API_UPDATE_ROLE, API_UPGRADE_ROLE_PERMISSION } from 'src/app/constants';
+import { IUpgradeRolePermission } from 'src/app/interfaces';
 import { ICommonResponse } from 'src/app/interfaces/CommonResponse.interface';
-import { ICreateRole, IGetRoleById, IGetRoles } from 'src/app/interfaces/Roles.interface';
+import { ICreateRole, IGetRoleById, IGetRoles, IUpdateRole } from 'src/app/interfaces/Roles.interface';
 
 @Injectable()
 export class RoleService {
@@ -23,5 +24,13 @@ export class RoleService {
 
   CreateRole(data:ICreateRole){
     return this.http.post<ICommonResponse<IGetRoles[]>>(API_CREATE_ROLE,data)
+  }
+
+  UpdateRole(data:IUpdateRole){
+    return this.http.put<ICommonResponse<IGetRoleById>>(API_UPDATE_ROLE,data)
+  }
+
+  UpgradeRolePermissions(data:IUpgradeRolePermission){
+    return this.http.post<ICommonResponse<IGetRoleById>>(API_UPGRADE_ROLE_PERMISSION,data)
   }
 }

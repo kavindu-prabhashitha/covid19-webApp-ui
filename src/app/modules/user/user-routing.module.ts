@@ -5,6 +5,7 @@ import { OverviewComponent } from "./components/overview/overview.component";
 import { RolesComponent } from "./components/roles/roles.component";
 import { PermissionsComponent } from "./components/permissions/permissions.component";
 import { ManageRoleComponent } from "./components/manage-role/manage-role.component";
+import { UsersComponent } from "./components/users/users.component";
 
 const routes:Routes = [
     {
@@ -14,7 +15,8 @@ const routes:Routes = [
             { path:'',component:OverviewComponent},
             { path:'roles',component:RolesComponent},
             { path:'permissions',component:PermissionsComponent},
-            { path:'manage-role',component:ManageRoleComponent}
+            { path:'manage-role',component:ManageRoleComponent},
+            { path:'users',component:UsersComponent}
         ]
     }
 ]

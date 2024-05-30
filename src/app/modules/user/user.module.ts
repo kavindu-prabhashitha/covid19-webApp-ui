@@ -15,7 +15,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddEditRoleComponent } from './components/roles/add-edit-role/add-edit-role.component';
 import { ManageRoleComponent } from './components/manage-role/manage-role.component';
 import { UpgradePermissionsComponent } from './components/manage-role/upgrade-permissions/upgrade-permissions.component';
+import { GoToPreviousIconComponent } from 'src/app/shared/components/icons/go-to-previous-icon.component';
+import { EditIconComponent } from 'src/app/shared/components/icons/edit-icon.component';
 
+const icons = [
+  EditIconComponent,
+  GoToPreviousIconComponent
+]
 
 
 @NgModule({
@@ -40,7 +46,8 @@ import { UpgradePermissionsComponent } from './components/manage-role/upgrade-pe
     LoadingComponent,
     ToastrModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ...icons
   ]
 })
 export class UserModule { }

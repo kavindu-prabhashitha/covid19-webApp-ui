@@ -21,3 +21,10 @@ export interface ICreateRole{
     uid:string
     extends?:number
 }
+
+export interface IUpdateRole{
+    id:number
+    name?:string
+    uid?:string
+    description?:string
+}

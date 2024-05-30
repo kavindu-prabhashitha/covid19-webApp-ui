@@ -14,3 +14,15 @@ export interface ICreatePermission{
     rPid:number
     description?:string
 }
+
+export interface IUpdatePermission{
+    id:number
+    name?:string
+    rPid?:number
+    description?:string
+}
+
+export interface IUpgradeRolePermission{
+    userRoleId:number,
+    permissionIds :number[]
+}

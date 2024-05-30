@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription, concatMap,  of,  } from 'rxjs';
 import { RoleService } from '../../services/role.service';
 import { IRole } from 'src/app/interfaces';
 import { MatDialog } from '@angular/material/dialog';
 import { UpgradePermissionsComponent } from './upgrade-permissions/upgrade-permissions.component';
+import { PreviousRouteService } from 'src/app/services/previous-route.service';
 
 @Component({
   selector: 'app-manage-role',
@@ -16,10 +17,14 @@ export class ManageRoleComponent implements OnInit,OnDestroy{
   isLoading = false
   roleId!:number
   roleData!:IRole
+  previousRoute!:string
 
+  //Substriptions
   routeParamSubsription!:Subscription
   constructor(
+    private prevousRouteService:PreviousRouteService,
     private route:ActivatedRoute,
+    private router:Router,
     private roleService:RoleService,
     private matDialog:MatDialog,
 
@@ -28,7 +33,12 @@ export class ManageRoleComponent implements OnInit,OnDestroy{
 
 
   ngOnInit(): void {
-    this.isLoading = true
+    this.isLoading = true;
+    console.log("Previous route: ",this.prevousRouteService.getPreviousUrl())
+    if(this.prevousRouteService.getPreviousUrl()){
+      this.previousRoute = this.prevousRouteService.getPreviousUrl()
+    }
+    
     this.routeParamSubsription = this.route.queryParams
     .pipe(
       concatMap((res:Params)=>{
@@ -63,6 +73,10 @@ export class ManageRoleComponent implements OnInit,OnDestroy{
       console.log(`Dialog result from Upgrade Role: ${result}`);
       this.ngOnInit()
     });
+  }
+
+  goToPreviousRoute(){
+    this.router.navigateByUrl(this.previousRoute)
   }
 
   ngOnDestroy(): void {

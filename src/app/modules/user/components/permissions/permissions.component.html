@@ -1,10 +1,16 @@
 <div class="relative overflow-x-auto mt-4">
     <div class="flex flex-row-reverse w-full  pt-2 pb-2">
+
         <button 
         type="button" 
         (click)="createPermission()"
-        class="ms-4 py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-        >Create Permission</button>
+        class="ms-4 py-2.5 px-5 me-2 mb-2 w-40 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+        >Create Role</button>
+        <div class="relative w-full">
+            <h2 class="ps-4">
+                System Permissions
+            </h2>
+        </div>
     </div>
     <app-loading *ngIf="isLoading"></app-loading>
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" *ngIf="!isLoading">
@@ -53,6 +59,10 @@
                 </td>
                 <td class="px-6 py-4">
                     {{permission.rPid}}
+                </td>
+                <td>
+                    <button type="button" (click)="editPermission(permission)"><app-edit-icon ></app-edit-icon></button>
+                    
                 </td>
 
             </tr>

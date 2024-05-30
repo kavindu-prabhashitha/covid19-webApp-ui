@@ -44,5 +44,16 @@ export class PermissionsComponent implements OnInit{
 
   }
 
+  editPermission(data:IPermission){
+    const dialogRef = this.matDialog.open(AddEditPermissionComponent, {
+      data
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result from Add Country Case: ${result}`);
+      this.ngOnInit()
+    });
+  }
+
 
 }
