@@ -20,4 +20,8 @@ export class OverviewComponent {
   navigateToPermissions(){
     this.router.navigateByUrl("/user-module/permissions")
   }
+
+  navigateToUsers(){
+    this.router.navigateByUrl("/user-module/users")
+  }
 }

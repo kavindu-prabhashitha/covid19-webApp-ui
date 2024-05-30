@@ -1,0 +1,41 @@
+
+<mat-dialog-content>
+    <h3 class="text-3xl font-extrabold text-black mb-2">Manage System User</h3>
+    <form class="max-w-md mx-auto lg:w-[400px] md:w-[400px]" [formGroup]="userManageForm" (ngSubmit)="onFormSubmit()">
+        <div class="relative z-0 w-full mb-5 mt-1  group">
+            <div *ngIf="currentUser" class="px-6 py-1font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <p class="font-extrabold block">Current Role
+                    &nbsp;&nbsp;
+                    <span
+                        class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                        {{currentUser.role.uid}}
+                    </span>
+                </p>
+    
+            </div>
+        </div>
+        <div class="relative z-0 w-full mb-5 mt-4 group">
+            <label for="roles" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upgrade Role</label>
+            <select formControlName="roleId" id="roles" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="" >Select Role</option>
+                    <option *ngFor="let role of roles" [value]="role.id" >{{role.name}}</option>
+            </select>
+        </div>
+
+        <mat-dialog-actions>
+            <button 
+            type="submit"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Upgrade User</button>
+
+            <button 
+        type="button"
+        (click)="closeForm()"
+        class="ml-2 text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 me-0">
+        Close</button>
+        </mat-dialog-actions>
+    </form>
+</mat-dialog-content>
+
+
+ 

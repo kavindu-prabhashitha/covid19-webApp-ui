@@ -17,6 +17,9 @@ import { ManageRoleComponent } from './components/manage-role/manage-role.compon
 import { UpgradePermissionsComponent } from './components/manage-role/upgrade-permissions/upgrade-permissions.component';
 import { GoToPreviousIconComponent } from 'src/app/shared/components/icons/go-to-previous-icon.component';
 import { EditIconComponent } from 'src/app/shared/components/icons/edit-icon.component';
+import { UsersComponent } from './components/users/users.component';
+import { ManageUsersComponent } from './components/users/manage-users/manage-users.component';
+import { AddEditUserComponent } from './components/users/add-edit-user/add-edit-user.component';
 
 const icons = [
   EditIconComponent,
@@ -32,7 +35,10 @@ const icons = [
     AddEditPermissionComponent,
     AddEditRoleComponent,
     ManageRoleComponent,
-    UpgradePermissionsComponent
+    UpgradePermissionsComponent,
+    UsersComponent,
+    ManageUsersComponent,
+    AddEditUserComponent
   
   ],
   providers:[

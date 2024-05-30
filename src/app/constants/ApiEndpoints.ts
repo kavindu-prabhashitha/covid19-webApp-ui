@@ -29,3 +29,7 @@ export const API_UPGRADE_ROLE_PERMISSION = `${API_PROTOCOL}://localhost:${API_PO
 export const API_GET_ROLE_PERMISSION = `${API_PROTOCOL}://localhost:${API_PORT}/api/RolePermission`;
 export const API_CREATE_ROLE_PERMISSION = `${API_PROTOCOL}://localhost:${API_PORT}/api/RolePermission`;
 export const API_UPDATE_ROLE_PERMISSION = `${API_PROTOCOL}://localhost:${API_PORT}/api/RolePermission`;
+
+//Users
+export const API_GET_ALL_USERS = `${API_PROTOCOL}://localhost:${API_PORT}/api/User`;
+export const API_UPGRADE_USER_ROLE = `${API_PROTOCOL}://localhost:${API_PORT}/Auth/UpdateUserRole`;
