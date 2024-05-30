@@ -16,3 +16,20 @@ export const API_GET_DB_DATA_BY_COUNTRY_NAME = `${API_PROTOCOL}://localhost:${AP
 export const API_ADD_COUNTRY_CASE_TO_DB = `${API_PROTOCOL}://localhost:${API_PORT}/api/Covid19Data`;
 export const API_UPDATE_COUNTRY_CASE_TO_DB = `${API_PROTOCOL}://localhost:${API_PORT}/api/Covid19Data`;
 export const API_GET_DB_COUNTRY_NAMES = `${API_PROTOCOL}://localhost:${API_PORT}/api/Covid19Data/get-all-country-names`
+
+//Roles
+export const API_GET_ROLES = `${API_PROTOCOL}://localhost:${API_PORT}/api/UserRole`;
+export const API_GET_ROLE_BY_ID = `${API_PROTOCOL}://localhost:${API_PORT}/api/UserRole/GetRoleById`;
+export const API_CREATE_ROLE = `${API_PROTOCOL}://localhost:${API_PORT}/api/UserRole`;
+export const API_UPDATE_ROLE = `${API_PROTOCOL}://localhost:${API_PORT}/api/UserRole`;
+export const API_UPGRADE_ROLE_PERMISSION = `${API_PROTOCOL}://localhost:${API_PORT}/api/UserRole/add-permissions-to-role`;
+
+
+//Permissions
+export const API_GET_ROLE_PERMISSION = `${API_PROTOCOL}://localhost:${API_PORT}/api/RolePermission`;
+export const API_CREATE_ROLE_PERMISSION = `${API_PROTOCOL}://localhost:${API_PORT}/api/RolePermission`;
+export const API_UPDATE_ROLE_PERMISSION = `${API_PROTOCOL}://localhost:${API_PORT}/api/RolePermission`;
+
+//Users
+export const API_GET_ALL_USERS = `${API_PROTOCOL}://localhost:${API_PORT}/api/User`;
+export const API_UPGRADE_USER_ROLE = `${API_PROTOCOL}://localhost:${API_PORT}/Auth/UpdateUserRole`;

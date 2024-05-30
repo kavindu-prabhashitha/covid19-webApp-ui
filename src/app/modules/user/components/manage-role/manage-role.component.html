@@ -1,0 +1,87 @@
+<div class="relative overflow-x-auto mt-4">
+    <div class="flex flex-row w-full ps-2">
+        <app-go-to-previous *ngIf="previousRoute" (click)="goToPreviousRoute()"></app-go-to-previous>
+        <div class="ms-4"></div>
+        <h2>Manage User Role</h2>
+
+    </div>
+
+    <div class="flex flex-row   w-full  mb-1">
+
+        <div *ngIf="roleData" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <p class="font-extrabold block">Role
+                &nbsp;&nbsp;
+                <span
+                    class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                    {{roleData.uid}}
+                </span>
+            </p>
+
+        </div>
+        <div class="relative w-full flex flex-row-reverse">
+            <button type="button" (click)="addPermission()"
+                class="ms-4 py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add
+                Permission</button>
+        </div>
+
+
+    </div>
+    <app-loading *ngIf="isLoading"></app-loading>
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" *ngIf="!isLoading">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    ID
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Role Permissions
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    R_ID
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+            <tr *ngIf="!roleData">
+                <td class="px-6 py-4"></td>
+                <td class="px-6 py-4">
+                    <div class="flex justify-center items-center p-10">
+                        <img src="assets/images/search.png" height="50px" width="50px" alt="" srcset="">
+                        <p class="mr-2">Nothing to view</p>
+                        <p class=""></p>
+
+                        <p>Search !</p>
+                    </div>
+                </td>
+            </tr>
+
+
+
+        </tbody>
+        <tbody>
+            <tr *ngFor="let permission of roleData.rolePermissions"
+                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{permission.id}}
+                </th>
+                <td class="px-6 py-4">
+                    {{permission.name}}
+                </td>
+                <td class="px-6 py-4">
+                    {{permission.rPid}}
+                </td>
+
+            </tr>
+
+
+
+        </tbody>
+
+    </table>
+</div>
