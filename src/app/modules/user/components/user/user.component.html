@@ -17,13 +17,19 @@
                     <a routerLink="/user-module" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
                         overview
                     </a>
-                    <a routerLink="roles" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
+                    <a 
+                    *isPermissionGranted="17"
+                    routerLink="roles" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
                         Roles
                     </a>
-                    <a routerLink="permissions" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
+                    <a  
+                    *isPermissionGranted="18"
+                        routerLink="permissions" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
                         Permissions
                     </a>
-                    <a routerLink="users" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
+                    <a 
+                    *isPermissionGranted="19"
+                    routerLink="users" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
                         Users
                     </a>
                 </nav>

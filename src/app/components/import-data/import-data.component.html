@@ -17,20 +17,28 @@
 
         </div>
 
-        <button type="button"
+        <button 
+            *isPermissionGranted="10"
+            type="button"
             class="text-white mt-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
             (click)="importData()">
             Import Data</button>
-        <button type="button"
+        <button
+            *isPermissionGranted="11"
+            type="button"
             class="text-white mt-2 bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
             (click)="viewImportDataByCountry()">
             View Imported Data</button>
-        <button type="button"
+        <button 
+            *isPermissionGranted="12"
+            type="button"
             class="text-white mt-2 bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 focus:outline-none dark:focus:ring-yellow-800"
             (click)="viewImportData()">
             View All Country Data</button>
 
-            <button type="button"
+            <button 
+            *isPermissionGranted="13"
+            type="button"
             class="ms-16 text-white mt-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5  mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
             (click)="openAddCaseModalComponent()"> 
             Add Case</button>
@@ -137,8 +145,10 @@
                         </span>
 
                     </td>
-                    <td *ifAdminUser class="px-6 py-4">
-                        <button type="button"
+                    <td class="px-6 py-4">
+                        <button 
+                        *isPermissionGranted="14"
+                        type="button"
                         class="text-white mt-2 bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
                         (click)="editCountryCaseData(covid_case.id, case.id, covid_case.country, covid_case.region, case)">
                         Edit</button>
@@ -151,29 +161,4 @@
 
         </table>
     </div>
-
-
-
-</div>
-
-<div *ifAdminUser>
-    <h3>This Content Can Only Be View By Admins</h3>
-</div>
-<div *ifUser>
-    <h3>This Content Can Only Be View By Users</h3>
-</div>
-<div >
-    <h3>This Content Can Be Viewed By EveryOne</h3>
-</div>
-
-<div>
-    <div *isGranted="'ADMINISTRATOR'">
-        This text is visible for staff members only
-      </div>
-      <div *isGranted="'USER'">
-        This text is visible for user members
-      </div>
-      <div *isGranted="'ANONYMOUS'">
-        This text is visible for user members
-      </div>
 </div>

@@ -26,3 +26,8 @@ export interface IUpgradeRolePermission{
     userRoleId:number,
     permissionIds :number[]
 }
+
+export interface IRemoveRolePermission{
+    userRoleId:number,
+    permissionId :number
+}

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API_CREATE_ROLE, API_GET_ROLES, API_GET_ROLE_BY_ID, API_UPDATE_ROLE, API_UPGRADE_ROLE_PERMISSION } from 'src/app/constants';
-import { IUpgradeRolePermission } from 'src/app/interfaces';
+import { API_CREATE_ROLE, API_GET_ROLES, API_GET_ROLE_BY_ID, API_REMOVE_ROLE_PERMISSION, API_UPDATE_ROLE, API_UPGRADE_ROLE_PERMISSION } from 'src/app/constants';
+import { IRemoveRolePermission, IUpgradeRolePermission } from 'src/app/interfaces';
 import { ICommonResponse } from 'src/app/interfaces/CommonResponse.interface';
 import { ICreateRole, IGetRoleById, IGetRoles, IUpdateRole } from 'src/app/interfaces/Roles.interface';
 
@@ -32,5 +32,9 @@ export class RoleService {
 
   UpgradeRolePermissions(data:IUpgradeRolePermission){
     return this.http.post<ICommonResponse<IGetRoleById>>(API_UPGRADE_ROLE_PERMISSION,data)
+  }
+
+  RemovePermissionFromRole(data:IRemoveRolePermission){
+    return this.http.post<ICommonResponse<IGetRoleById>>(API_REMOVE_ROLE_PERMISSION,data)
   }
 }

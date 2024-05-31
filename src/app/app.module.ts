@@ -26,6 +26,7 @@ import { IfAdminUser } from './directives/if-admin.directive';
 import { IfUser } from './directives/if-user.directive';
 import { IsGrantedDirective } from './directives/is-granted.directive';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { IsPermissionGrantedDirective } from './directives/is-permission-granted.directive';
 
 
 
@@ -42,7 +43,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     UserProfileComponent,
     IfAdminUser,
     IfUser,
-    IsGrantedDirective
+    IsGrantedDirective,
+    IsPermissionGrantedDirective
     
   ],
   imports: [

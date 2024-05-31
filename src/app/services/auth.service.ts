@@ -8,6 +8,7 @@ import { User } from "../interfaces/User.interface";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { UserRole } from "../constants/UserRoles.enum";
 import { API_LOGIN_USER, API_REFRESH_TOKEN, API_REGISTER_ADMIN, API_REGISTER_USER, API_REVOKE_REFRESH_TOKEN } from "../constants";
+import { AccessPermissionService } from "./access-permission.service";
 
 export const API_PORT = 44332;
 export const API_PROTOCOL = "https";
@@ -21,6 +22,7 @@ export class AuthService{
         private http:HttpClient, 
         private router:Router, 
         private userService:UserService,
+        private accessPermissionService:AccessPermissionService,
         private jwtTokenService:JwtHelperService
     ){
 
@@ -81,7 +83,8 @@ export class AuthService{
             role: UserRole.ANONYMOUS
         }
         this.isAuthenticated.next(false);
-        this.userService.setCurrentUser(user)
+        this.userService.setCurrentUser(user);
+        this.accessPermissionService.removeCurrentUserPermissions()
         this.router.navigate(['/login'])
         
     }
