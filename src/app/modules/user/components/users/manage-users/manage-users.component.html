@@ -4,13 +4,14 @@
     <form class="max-w-md mx-auto lg:w-[400px] md:w-[400px]" [formGroup]="userManageForm" (ngSubmit)="onFormSubmit()">
         <div class="relative z-0 w-full mb-5 mt-1  group">
             <div *ngIf="currentUser" class="px-6 py-1font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <p class="font-extrabold block">Current Role
+                <p class="font-medium block">Current Role
                     &nbsp;&nbsp;
                     <span
                         class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
                         {{currentUser.role.uid}}
                     </span>
                 </p>
+                <p class="font-medium">Username  : {{currentUser.username}}</p>
     
             </div>
         </div>
