@@ -4,7 +4,7 @@ import { User } from "../interfaces/User.interface";
 import { UserRole } from "../constants/UserRoles.enum";
 
 @Injectable()
-export class UserService{
+export class UserServiceSample{
     readonly #currentUser$ = new BehaviorSubject<User>({userName:"Anonymus",role:UserRole.ANONYMOUS});
     private _roles:UserRole[] = [UserRole.ADMINISTRATOR,UserRole.USER,UserRole.ANONYMOUS];
     private _roleMap = new Map();

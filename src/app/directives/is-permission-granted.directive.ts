@@ -2,7 +2,7 @@ import { Directive, Input, OnInit, TemplateRef, ViewContainerRef, inject } from 
 import { AccessPermissionService } from "../services/access-permission.service";
 
 @Directive({
-    selector:'[isPermissionGranted]'
+    selector:'[isPermissionGranted]',
 })
 export class IsPermissionGrantedDirective implements OnInit{
     private _accessPermissionService = inject(AccessPermissionService);

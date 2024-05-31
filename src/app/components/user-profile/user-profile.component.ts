@@ -1,6 +1,7 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { User } from 'src/app/interfaces/User.interface';
-import { UserService } from 'src/app/services/user.service';
+import { Component, OnInit } from '@angular/core';
+import { IUser } from 'src/app/interfaces/User.interface';
+import { AccessPermissionService } from 'src/app/services/access-permission.service';
+
 
 @Component({
   selector: 'app-user-profile',
@@ -9,13 +10,16 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserProfileComponent implements OnInit{
 
-  currentUser!:User;
-  userService = inject(UserService)
+  currentUser!:IUser;
+  
+  constructor(private accessPermissionService:AccessPermissionService){
+
+  }
 
   ngOnInit(): void {
-    if(this.userService.getCurrentUser().value){
-      this.currentUser = this.userService.getCurrentUser().value
-    }
+ 
+      this.currentUser = this.accessPermissionService.getAuthenticatedUser()
+    
   }
 
 }

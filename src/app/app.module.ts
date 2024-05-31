@@ -20,13 +20,11 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './services/auth.service';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthTokenInterceptorService } from './interceptors/auth-token.interceptor.service';
-import { UserService } from './services/user.service';
 import { JwtModule } from '@auth0/angular-jwt';
-import { IfAdminUser } from './directives/if-admin.directive';
-import { IfUser } from './directives/if-user.directive';
-import { IsGrantedDirective } from './directives/is-granted.directive';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
-import { IsPermissionGrantedDirective } from './directives/is-permission-granted.directive';
+import { SharedModule } from './shared/shared.module';
+
+
 
 
 
@@ -36,15 +34,12 @@ import { IsPermissionGrantedDirective } from './directives/is-permission-granted
     KeysPipe,
     NavbarComponent,
     SearchCasesComponent,
-    ImportDataComponent,
     AddEditCountryCaseComponent,
+    ImportDataComponent,
     LoginComponent,
     RegisterComponent,
-    UserProfileComponent,
-    IfAdminUser,
-    IfUser,
-    IsGrantedDirective,
-    IsPermissionGrantedDirective
+    UserProfileComponent
+    
     
   ],
   imports: [
@@ -67,7 +62,8 @@ import { IsPermissionGrantedDirective } from './directives/is-permission-granted
       config:{
         tokenGetter:()=>localStorage.getItem("accessToken")
       }
-    })
+    }),
+    SharedModule
   
    
   ],
@@ -79,11 +75,11 @@ import { IsPermissionGrantedDirective } from './directives/is-permission-granted
     },
     Covid19APIService, 
     provideAnimationsAsync(), 
-    AuthService,
-    UserService,
+    AuthService
+
+
   
   ],
-  exports:[IsPermissionGrantedDirective],
 
   bootstrap: [AppComponent]
 })

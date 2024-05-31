@@ -3,7 +3,6 @@ import { Injectable } from "@angular/core";
 import { ILoginResponse, ILoginUser, IRegisterUser, IRevokeRefreshToken } from "../interfaces/Auth.interface";
 import { BehaviorSubject, tap } from "rxjs";
 import { Router } from "@angular/router";
-import { UserService } from "./user.service";
 import { User } from "../interfaces/User.interface";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { UserRole } from "../constants/UserRoles.enum";
@@ -21,7 +20,6 @@ export class AuthService{
     constructor(
         private http:HttpClient, 
         private router:Router, 
-        private userService:UserService,
         private accessPermissionService:AccessPermissionService,
         private jwtTokenService:JwtHelperService
     ){
@@ -44,8 +42,7 @@ export class AuthService{
                         userName : res.data.userName,
                         role: token.role
                     }
-                    console.log("Current user : ",user)
-                    this.userService.setCurrentUser(user)
+                   
 
                 }
                 
@@ -66,7 +63,6 @@ export class AuthService{
                         role: token.role
                     }
                     console.log("Current user Auto Login : ",user, "role : ",typeof user.role)
-            this.userService.setCurrentUser(user)
             return
         }
 
@@ -83,7 +79,6 @@ export class AuthService{
             role: UserRole.ANONYMOUS
         }
         this.isAuthenticated.next(false);
-        this.userService.setCurrentUser(user);
         this.accessPermissionService.removeCurrentUserPermissions()
         this.router.navigate(['/login'])
         

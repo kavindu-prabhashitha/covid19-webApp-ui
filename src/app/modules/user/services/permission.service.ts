@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API_CREATE_ROLE_PERMISSION, API_GET_ROLE_PERMISSION, API_UPDATE_ROLE_PERMISSION } from 'src/app/constants';
-import { ICreatePermission, IGetAllPermisions, IPermission, IUpdatePermission } from 'src/app/interfaces';
+import { ICreatePermission, IPermission, IUpdatePermission } from 'src/app/interfaces';
 import { ICommonResponse } from 'src/app/interfaces/CommonResponse.interface';
 
 @Injectable()
