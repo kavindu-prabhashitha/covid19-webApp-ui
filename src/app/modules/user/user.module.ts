@@ -47,7 +47,7 @@ const icons = [
   ],
   providers:[
     PermissionService,
-    RoleService
+    RoleService,
   ],
   imports: [
     CommonModule,

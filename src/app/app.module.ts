@@ -83,6 +83,8 @@ import { IsPermissionGrantedDirective } from './directives/is-permission-granted
     UserService,
   
   ],
+  exports:[IsPermissionGrantedDirective],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
