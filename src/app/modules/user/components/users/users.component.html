@@ -4,6 +4,7 @@
 
         <button 
             type="button" 
+            *isPermissionGranted="27"
             (click)="createUser()"
             class="ms-4 py-2.5 px-5 me-2 mb-2 w-40 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
         Create user
@@ -27,7 +28,7 @@
                 <th scope="col" class="px-6 py-3">
                     User Role
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th *isPermissionGranted="26" scope="col" class="px-6 py-3">
                     Actions
                 </th>
             </tr>
@@ -63,13 +64,13 @@
                 <td class="px-6 py-4">
                     {{user.role.uid}}
                 </td>
-                <td class="px-6 py-4 ">
+                <td class="px-6 py-4 " *isPermissionGranted="26">
                     <div class="flex"> 
                         <button type="button" 
                             (click)="manageUser(user)"
                             class="ms-4 py-2.5 px-5 me-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                             Manage User</button>
-                        <button type="button" class="ms-4" (click)="editUser(user)"><app-edit-icon></app-edit-icon></button>
+                        <button  type="button" class="ms-4" (click)="editUser(user)"><app-edit-icon></app-edit-icon></button>
                     </div>
                 </td>
 

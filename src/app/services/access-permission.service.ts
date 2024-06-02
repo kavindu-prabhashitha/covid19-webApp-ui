@@ -24,7 +24,7 @@ export class AccessPermissionService {
 
   setCurrentUserPermissions(permissions:number[]){
     this.currentUserPermissions = permissions;
-    //console.log("Current User Permissions : ",this.currentUserPermissions)
+    console.log("Current User Permissions : ",this.currentUserPermissions)
  }
 
  setAuthenticatedUser(user:IUser){

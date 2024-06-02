@@ -67,7 +67,14 @@ export class AuthService{
                     console.log("Current user Auto Login : ",user, "role : ",typeof user.role)
             this.userService.GetUserById(Number(token["nameid"])).subscribe({
                 next:(res)=>{
+                    const userPermissions: number[]=[]
                     this.accessPermissionService.setAuthenticatedUser(res.data)
+                    res.data.role.rolePermissions?.forEach((permission)=>{
+                        userPermissions.push(permission.rPid);
+                        console.log("User permission Id : ",permission.rPid)
+                    });
+                    this.accessPermissionService.setCurrentUserPermissions(userPermissions)
+                    this.router.navigateByUrl("/")
                 }
             })
             return
