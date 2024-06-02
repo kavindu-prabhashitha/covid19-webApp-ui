@@ -23,6 +23,7 @@ import { AuthTokenInterceptorService } from './interceptors/auth-token.intercept
 import { JwtModule } from '@auth0/angular-jwt';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { SharedModule } from './shared/shared.module';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 
@@ -38,7 +39,8 @@ import { SharedModule } from './shared/shared.module';
     ImportDataComponent,
     LoginComponent,
     RegisterComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    NotFoundComponent
     
     
   ],
