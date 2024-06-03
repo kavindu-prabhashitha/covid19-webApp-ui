@@ -88,7 +88,7 @@ export class ImportDataComponent implements AfterContentChecked, OnInit{
  }
 
  viewImportDataByCountry(){
-  //this.isLoading =true;
+  this.isLoading =true;
   if(this.countryName === ''){
     this.toastr.info("Please select a Country before importing!")
     this.isLoading=false

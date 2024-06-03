@@ -54,7 +54,6 @@ const icons = [
     CommonModule,
     UserRoutingModule,
     HttpClientModule,
-    LoadingComponent,
     ToastrModule,
     MatDialogModule,
     ReactiveFormsModule,
