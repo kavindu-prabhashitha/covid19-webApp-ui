@@ -1,3 +1,8 @@
+# Covid19 WebApi (frontend)
+##### Angular Frontend
+
+![image](https://drive.google.com/uc?export=view&id=13651ynys5yaOOCCkhPbwQRxcLdgnpHUX)
+
 # Covid19WebUI
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.14.
