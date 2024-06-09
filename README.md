@@ -1,5 +1,5 @@
 # Covid19 WebApi (frontend)
-![image](https://drive.google.com/uc?export=view&id=13651ynys5yaOOCCkhPbwQRxcLdgnpHUX)
+
 ##### Angular Frontend - Project Running
 - This project was generated with [Angular - - CLI](https://github.com/angular/angular-cli) version 16.2.14.
 - Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
@@ -31,6 +31,7 @@ And of course Covid19-WebApp itself is open source with a [public repository][di
  on GitHub.
 
 ## Screenshots
+![image](https://drive.google.com/uc?export=view&id=13651ynys5yaOOCCkhPbwQRxcLdgnpHUX)
 
 ![Covid19 Import](https://drive.google.com/uc?export=view&id=1XceZIc5Jn-uGwovVYeCNQ1lt1eFD61CW)
 
