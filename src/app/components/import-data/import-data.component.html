@@ -45,13 +45,10 @@
     </div>
 
 </div>
-<div>
-    <div class="flex justify-center" *ngIf="isLoading">
-        <img src="assets/images/loading.gif" height="200px" width="200px" alt="">
-    </div>
-
-
-    <div class="relative overflow-x-auto mt-4">
+<div class="p-20 flex flex-col justify-center items-center" *ngIf="isLoading">
+    <div class="flex flex-col justify-items-center items-center h-full w-full" >
+        <!-- <img src="assets/images/loading.gif" height="200px" width="200px" alt=""> -->
+        <app-loading *ngIf="isLoading" ></app-loading>
     </div>
 </div>
 <div>
@@ -130,7 +127,7 @@
                         {{covid_case.region}}
                     </td>
                     <td class="px-6 py-4">
-                        {{case.id| date}}
+                        {{case.date| date}}
                     </td>
                     <td class="px-6 py-4">
                         <span

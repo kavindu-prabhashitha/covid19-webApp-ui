@@ -1,10 +1,11 @@
-import { Directive, Input, OnInit, TemplateRef, ViewContainerRef, inject } from "@angular/core";
+import { AfterViewInit, Directive, Input, OnChanges, OnInit, TemplateRef, ViewContainerRef, inject } from "@angular/core";
 import { AccessPermissionService } from "../services/access-permission.service";
 
 @Directive({
-    selector:'[isPermissionGranted]'
+    selector:'[isPermissionGranted]',
 })
 export class IsPermissionGrantedDirective implements OnInit{
+
     private _accessPermissionService = inject(AccessPermissionService);
     private _templateRef = inject(TemplateRef);
     private _viewContainer = inject(ViewContainerRef);
@@ -22,5 +23,8 @@ export class IsPermissionGrantedDirective implements OnInit{
             this._viewContainer.createEmbeddedView(this._templateRef);
         }
     }
+
+
+
 
 }

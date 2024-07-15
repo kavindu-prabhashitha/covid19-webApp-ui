@@ -1,7 +1,9 @@
+/*
+
 import { NgIf } from "@angular/common";
 import { Directive, OnInit, inject } from "@angular/core";
 import { DestroyedDirective } from "./destroyed.directive";
-import { UserService } from "../services/user.service";
+import { UserService } from "../services/user.service-sample";
 import { takeUntil } from "rxjs";
 import { UserRole } from "../constants/UserRoles.enum";
 
@@ -35,3 +37,5 @@ export class IfUser implements OnInit{
     }
 
 }
+
+*/

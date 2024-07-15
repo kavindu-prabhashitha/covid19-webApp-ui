@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IUser } from 'src/app/interfaces';
-import { UserNewService } from '../../services/user-new.service';
+import { UserNewService } from '../../../../services/user-new.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEditUserComponent } from './add-edit-user/add-edit-user.component';
 import { Subscription } from 'rxjs';

@@ -4,8 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { IRole, IUpgradeUserRole, IUser } from 'src/app/interfaces';
 import { RoleService } from '../../../services/role.service';
-import { UserService } from 'src/app/services/user.service';
-import { UserNewService } from '../../../services/user-new.service';
+import { UserNewService } from '../../../../../services/user-new.service';
 
 @Component({
   selector: 'app-manage-users',

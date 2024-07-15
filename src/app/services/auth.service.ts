@@ -3,12 +3,12 @@ import { Injectable } from "@angular/core";
 import { ILoginResponse, ILoginUser, IRegisterUser, IRevokeRefreshToken } from "../interfaces/Auth.interface";
 import { BehaviorSubject, tap } from "rxjs";
 import { Router } from "@angular/router";
-import { UserService } from "./user.service";
 import { User } from "../interfaces/User.interface";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { UserRole } from "../constants/UserRoles.enum";
 import { API_LOGIN_USER, API_REFRESH_TOKEN, API_REGISTER_ADMIN, API_REGISTER_USER, API_REVOKE_REFRESH_TOKEN } from "../constants";
 import { AccessPermissionService } from "./access-permission.service";
+import { UserNewService } from "./user-new.service";
 
 export const API_PORT = 44332;
 export const API_PROTOCOL = "https";
@@ -21,8 +21,8 @@ export class AuthService{
     constructor(
         private http:HttpClient, 
         private router:Router, 
-        private userService:UserService,
         private accessPermissionService:AccessPermissionService,
+        private userService: UserNewService,
         private jwtTokenService:JwtHelperService
     ){
 
@@ -44,8 +44,7 @@ export class AuthService{
                         userName : res.data.userName,
                         role: token.role
                     }
-                    console.log("Current user : ",user)
-                    this.userService.setCurrentUser(user)
+                   
 
                 }
                 
@@ -66,7 +65,18 @@ export class AuthService{
                         role: token.role
                     }
                     console.log("Current user Auto Login : ",user, "role : ",typeof user.role)
-            this.userService.setCurrentUser(user)
+            this.userService.GetUserById(Number(token["nameid"])).subscribe({
+                next:(res)=>{
+                    const userPermissions: number[]=[]
+                    this.accessPermissionService.setAuthenticatedUser(res.data)
+                    res.data.role.rolePermissions?.forEach((permission)=>{
+                        userPermissions.push(permission.rPid);
+                        console.log("User permission Id : ",permission.rPid)
+                    });
+                    this.accessPermissionService.setCurrentUserPermissions(userPermissions)
+                    this.router.navigateByUrl("/")
+                }
+            })
             return
         }
 
@@ -83,8 +93,8 @@ export class AuthService{
             role: UserRole.ANONYMOUS
         }
         this.isAuthenticated.next(false);
-        this.userService.setCurrentUser(user);
-        this.accessPermissionService.removeCurrentUserPermissions()
+        this.accessPermissionService.removeCurrentUserPermissions();
+        this.accessPermissionService.removeAuthenticatedUser()
         this.router.navigate(['/login'])
         
     }

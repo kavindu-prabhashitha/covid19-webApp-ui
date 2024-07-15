@@ -1,5 +1,7 @@
+/*
+
 import { Directive, Input, OnInit, TemplateRef, ViewContainerRef, inject } from "@angular/core";
-import { UserService } from "../services/user.service";
+import { UserService } from "../services/user.service-sample";
 
 @Directive({
     selector:'[isGranted]'
@@ -24,3 +26,5 @@ export class IsGrantedDirective implements OnInit{
     }
 
 }
+
+*/

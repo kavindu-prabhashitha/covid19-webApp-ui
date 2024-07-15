@@ -7,6 +7,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { RegisterComponent } from "./components/register/register.component";
 import { authGuard } from "./guards/auth.guard";
 import { UserProfileComponent } from "./components/user-profile/user-profile.component";
+import { NotFoundComponent } from "./components/not-found/not-found.component";
 
 const routes:Routes = [
     {path:'',
@@ -20,6 +21,8 @@ const routes:Routes = [
                 path:'user-module', 
                 loadChildren:()=> import("./modules/user/user.module").then((m)=> m.UserModule)
             },
+            {path: "not-found", component: NotFoundComponent},
+            {path: "**", redirectTo:'not-found'}
         ]
 
     }

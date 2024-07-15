@@ -22,6 +22,8 @@ import { ManageUsersComponent } from './components/users/manage-users/manage-use
 import { AddEditUserComponent } from './components/users/add-edit-user/add-edit-user.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { IsPermissionGrantedDirective } from 'src/app/directives/is-permission-granted.directive';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { UserNewService } from 'src/app/services/user-new.service';
 
 const icons = [
   EditIconComponent,
@@ -41,22 +43,21 @@ const icons = [
     UsersComponent,
     OverviewComponent,
     ManageUsersComponent,
-    AddEditUserComponent,
-    IsPermissionGrantedDirective
+    AddEditUserComponent
   
   ],
   providers:[
     PermissionService,
-    RoleService,
+    RoleService
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
     HttpClientModule,
-    LoadingComponent,
     ToastrModule,
     MatDialogModule,
     ReactiveFormsModule,
+    SharedModule,
     ...icons
   ]
 })

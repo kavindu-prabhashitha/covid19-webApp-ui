@@ -5,12 +5,12 @@
         <a href="#">
             <img class="rounded-t-lg" src="assets/images/default-profile.jpg" height="200px" width="200px" alt="" />
         </a>
-        <div class="p-5">
+        <div *ngIf="currentUser" class="p-5">
             <a href="#">
-                <h4 class="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Username : {{currentUser.userName}}</h4>
+                <h4  class="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Username : {{currentUser.username}}</h4>
             </a>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{currentUser.role}}</span>    
+                <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{currentUser.role.name}}</span>    
             </p>
 
         </div>

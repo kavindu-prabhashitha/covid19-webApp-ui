@@ -4,7 +4,6 @@ import { IGetCountryCaseData, IUpdateCountryCaseData } from 'src/app/interfaces'
 import { Covid19APIService } from 'src/app/services/covid19API.service';
 import { AddEditCountryCaseComponent } from '../add-edit-country-case/add-edit-country-case.component';
 import { MatDialog } from '@angular/material/dialog';
-import { UserService } from 'src/app/services/user.service';
 
 
 interface ICountryData {
@@ -40,19 +39,13 @@ export class ImportDataComponent implements AfterContentChecked, OnInit{
  constructor(
   private toastr:ToastrService, 
   private apiService:Covid19APIService,
-  private matDialog:MatDialog,
-  private userService:UserService
+  private matDialog:MatDialog
 ){
 
  }
   ngOnInit(): void {
     this.getCountryNameList()
 
-    this.userService.getCurrentUser().subscribe({
-      next: res=>{
-        console.log("Current User : ",res)
-      }
-    })
   }
 
 
@@ -95,7 +88,7 @@ export class ImportDataComponent implements AfterContentChecked, OnInit{
  }
 
  viewImportDataByCountry(){
-  //this.isLoading =true;
+  this.isLoading =true;
   if(this.countryName === ''){
     this.toastr.info("Please select a Country before importing!")
     this.isLoading=false
